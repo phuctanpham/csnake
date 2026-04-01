@@ -35,7 +35,7 @@ Hướng dẫn commit code:
 
 7. Kiểm tra lại bằng lệnh git status để chắc chắn unstaged files --> staged files đã được commit hết rồi mới đẩy code lên github.
 
-
+![GitHub](img/gitstatus2.png)
 
 8. đẩy code lên github:
    - git push origin MSSV/tên_branch
