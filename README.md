@@ -27,7 +27,17 @@ Hướng dẫn commit code:
 
 ![GitHub](img/gitstatus.png)
 
-6. chạy lệnh sau để commit code:
+6. chạy lệnh sau để commit code (nên add từng file một để dễ kiểm soát thay vì chạy "	git add ." hoặc "git add -a" để add tất cả file đã thay đổi):
    - git add tên_file_cần_commit
    - git commit -m "MSSV: Nội dung commit"
+
+![GitHub](img/gitcommit.png)
+
+7. Kiểm tra lại bằng lệnh git status để chắc chắn unstaged files --> staged files đã được commit hết rồi mới đẩy code lên github.
+
+
+
+8. đẩy code lên github:
    - git push origin MSSV/tên_branch
+
+![GitHub](img/gitpush.png)
