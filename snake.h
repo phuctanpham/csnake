@@ -1,7 +1,7 @@
 #ifndef SNAKE_H
 #define SNAKE_H
-
-#include "labyrinth.h"
+//#include "labyrinth.h"
+#include "labyrinth.cpp"
 
 enum Direction {
     RIGHT = 0,
