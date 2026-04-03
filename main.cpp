@@ -1,6 +1,6 @@
 #include "snake.h"
-#include "labyrinth.h"
-
+#include "labyrinth.cpp"
+//#include "labyrinth.h"
 #include <iostream>
 
 using namespace std;
