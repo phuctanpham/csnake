@@ -10,3 +10,8 @@ clang++ main.cpp snake.cpp labyrinth.cpp -o snake
 ./snake
 
 ```
+
+Authors:  
+- Phạm Tấn Phúc (25730134)
+- Tạ Minh Trường (25730157)
+- Ngô Triều Vĩ (25730160)
