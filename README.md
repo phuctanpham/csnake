@@ -10,6 +10,11 @@ clang++ main.cpp snake.cpp labyrinth.cpp -o snake
 ./snake
 
 ```
+3) Chọn chế độ chơi và bắt đầu chơi
+
+![GitHub](img/gameplay1.png)
+
+![GitHub](img/gameplay1.png)
 
 Authors:  
 - Phạm Tấn Phúc (25730134)
