@@ -5,7 +5,8 @@
 ```text
 1. Tích hợp email uit vào tài khoản github và chuyển thành email chính như hình:
 
-login github >> click avatar >> setting >> email >> add email >> nhập email của bạn >> click add >> chọn email vừa thêm làm primary
+login github >> click avatar >> setting >> email >> add email
+>> nhập email của bạn >> click add >> chọn email vừa thêm làm primary
 ```
 ![GitHub](img/github.png)
 
