@@ -19,7 +19,7 @@ clang++ main.cpp snake.cpp labyrinth.cpp -o snake
 
 ## B/ Information Credit
 Original Author:
-- Nguyen Van Toan (UIT.19529999)
+- Nguyễn Văn Toàn (UIT.19529999)
 - Repo: https://github.com/toannv-uit/Snake/
 
 Contributors:  
