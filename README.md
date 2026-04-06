@@ -1,3 +1,4 @@
+## A/ Setup to play
 1) Chạy lệnh sau để tạo file snake
 
 ```
@@ -16,7 +17,17 @@ clang++ main.cpp snake.cpp labyrinth.cpp -o snake
 
 ![GitHub](img/gameplay2.png)
 
-Authors:  
+## B/ Information Credit
+Original Author:
+- Nguyen Van Toan (UIT.19529999)
+- Repo: https://github.com/toannv-uit/Snake/
+
+Contributors:  
 - Phạm Tấn Phúc (25730134)
 - Tạ Minh Trường (25730157)
 - Ngô Triều Vĩ (25730160)
+
+Contribution:
+  -  Refactor the original codebase into OPP for snake and labyrinth.
+  -  Upgrade more barriers with multi gameplay mode.
+  -  Conceptualize the labyrinth
