@@ -1,5 +1,4 @@
 #include "snake.h"
-#include "labyrinth.cpp"
 //#include "labyrinth.h"
 #include <iostream>
 
