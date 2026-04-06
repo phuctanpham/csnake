@@ -14,7 +14,7 @@ clang++ main.cpp snake.cpp labyrinth.cpp -o snake
 
 ![GitHub](img/gameplay1.png)
 
-![GitHub](img/gameplay1.png)
+![GitHub](img/gameplay2.png)
 
 Authors:  
 - Phạm Tấn Phúc (25730134)
