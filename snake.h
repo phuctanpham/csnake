@@ -35,6 +35,8 @@ private:
     Direction currentDirection;
     Point food;
     bool gameOver;
+    int score;
+    int highScore;
 
 public:
     explicit Game(Labyrinth* labyrinth);

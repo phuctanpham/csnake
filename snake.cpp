@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <sys/select.h>
 #include "snake.h"
+#include <fstream>
 
 using namespace std;
 
@@ -214,11 +215,31 @@ void Snake::move(Direction direction) {
     }
 }
 
+int loadHighScore() {
+    ifstream file("highscore.txt");
+    int hs = 0;
+    if (file.is_open()) {
+        file >> hs;
+        file.close();
+    }
+    return hs;
+}
+
+void saveHighScore(int hs) {
+    ofstream file("highscore.txt");
+    if (file.is_open()) {
+        file << hs;
+        file.close();
+    }
+}
+
 Game::Game(Labyrinth* labyrinth) : labyrinth(labyrinth), currentDirection(RIGHT), gameOver(false) {
     food.x = 0;
     food.y = 0;
     srand(static_cast<unsigned int>(time(NULL)));
     spawnFood();
+    score = 0;
+    highScore = loadHighScore();
 }
 
 void Game::run() {
@@ -260,6 +281,10 @@ void Game::handleInput() {
 
 void Game::drawScene() const {
     labyrinth->draw();
+    // hiển thị điểm số và điểm cao nhất
+     goToXY(1, 1);
+    cout << "Score: " << score << " | High Score: " << highScore;
+    // vẽ mồi và rắn
     goToXY(food.x, food.y);
     cout << "*";
     snake.draw();
@@ -283,12 +308,22 @@ void Game::update() {
     if (snakeHead.x == food.x && snakeHead.y == food.y) {
         snake.grow();
         spawnFood();
+        score += 10;
+        if (score > highScore) {
+            highScore = score;
+        }
     }
 }
 
 void Game::drawGameOver() const {
+    saveHighScore(highScore);
     goToXY(labyrinth->left(), labyrinth->bottom() + 2);
-    cout << "Game Over. Press Ctrl+C to exit.";
+    cout << "Game Over. Press Ctrl+C to exit." << endl;
+    cout << "Final Score: " << score << endl;
+    cout << "High Score: " << highScore << endl;
+    if (score == highScore && score > 0) {  // Kiểm tra nếu là kỷ lục mới
+        cout << "New High Score!" << endl;
+    }
 }
 
 void goToXY(int column, int line) {
