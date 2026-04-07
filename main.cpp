@@ -1,5 +1,5 @@
 #include "snake.h"
-//#include "labyrinth.h"
+#include "labyrinth.h"
 #include <iostream>
 
 using namespace std;
