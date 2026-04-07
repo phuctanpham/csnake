@@ -233,6 +233,10 @@ void saveHighScore(int hs) {
     }
 }
 
+bool isOppositeDirection(Direction dir1, Direction dir2) {
+    return (dir1 + 2) % 4 == dir2;
+}
+
 Game::Game(Labyrinth* labyrinth) : labyrinth(labyrinth), currentDirection(RIGHT), gameOver(false) {
     food.x = 0;
     food.y = 0;
@@ -268,14 +272,18 @@ void Game::handleInput() {
     if (key == 27) {
         Direction direction = currentDirection;
         if (tryReadArrowDirection(direction)) {
-            currentDirection = direction;
+            if (!isOppositeDirection(currentDirection, direction)) {
+                currentDirection = direction;
+            }
         }
         return;
     }
 
     Direction direction = currentDirection;
     if (decodeDirectionKey(key, direction)) {
-        currentDirection = direction;
+        if (!isOppositeDirection(currentDirection, direction)) {
+            currentDirection = direction;
+        }
     }
 }
 

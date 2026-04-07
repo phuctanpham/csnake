@@ -51,5 +51,6 @@ private:
 };
 
 void goToXY(int column, int line);
+bool isOppositeDirection(Direction dir1, Direction dir2);
 
 #endif
