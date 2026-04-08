@@ -1,14 +1,28 @@
 ## A/ Setup to play
-1) Chạy lệnh sau để tạo file snake
+1) Chạy lệnh sau để tạo file thực thi
 
 ```
-clang++ main.cpp snake.cpp labyrinth.cpp -o snake
+make
+
+```
+
+Hoặc tạo file `snake.exe`:
+
+```
+make exe
 
 ```
 2) Chạy file snake vừa tạo
 
 ```
 ./snake
+
+```
+
+Nếu build bằng `make exe`, chạy bằng:
+
+```
+./snake.exe
 
 ```
 3) Chọn chế độ chơi và bắt đầu chơi

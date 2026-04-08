@@ -36,14 +36,16 @@ login github >> click avatar >> setting >> email >> add email
 ![GitHub](img/gitstatus.png)
 
 ```text
-6. chạy lệnh sau để commit code (nên add từng file một để dễ kiểm soát thay vì chạy "git add ." hoặc "git add -A" để add tất cả file đã thay đổi):
+6. chạy lệnh sau để commit code (nên add từng file một để dễ kiểm soát thay vì chạy "git add ." 
+hoặc "git add -A" để add tất cả file đã thay đổi):
    - git add tên_file_cần_commit
    - git commit -m "MSSV: Nội dung commit"
 ```
 ![GitHub](img/gitcommit.png)
 
 ```text
-7. Kiểm tra lại bằng lệnh git status để chắc chắn unstaged files --> staged files đã được commit hết rồi mới đẩy code lên github.
+7. Kiểm tra lại bằng lệnh git status để chắc chắn unstaged files 
+--> staged files đã được commit hết rồi mới đẩy code lên github.
 ```
 ![GitHub](img/gitstatus2.png)
 
@@ -57,7 +59,9 @@ login github >> click avatar >> setting >> email >> add email
 ## B) Hướng dẫn tạo PR và merge vào branch main:
 
 ```text
-1. Truy cập vào trang GitHub của repository. Sau khi push code, bạn sẽ thấy thông báo nhánh mới vừa được đẩy lên. Bấm vào nút "Compare & pull request" để tạo PR.
+1. Truy cập vào trang GitHub của repository. Sau khi push code, 
+bạn sẽ thấy thông báo nhánh mới vừa được đẩy lên. 
+Bấm vào nút "Compare & pull request" để tạo PR.
 ```
 ![GitHub](img/merge1.png)
 
@@ -72,11 +76,18 @@ login github >> click avatar >> setting >> email >> add email
 ![GitHub](img/merge2.png)
 
 ```text
-3. Xem lại PR vừa tạo. Bạn có thể trao đổi thêm hoặc bổ sung mô tả ở phần comment. Khi code đã được review và hiển thị trạng thái xanh (Ready to merge) thì có thể chuẩn bị gộp code. Bấm chọn vào ô "Merge pull request" để tiến hành gộp.
+3. Xem lại PR vừa tạo. Bạn có thể trao đổi thêm 
+hoặc bổ sung mô tả ở phần comment.Khi code đã được 
+review và hiển thị trạng thái xanh (Ready to merge) 
+thì có thể chuẩn bị gộp code. 
+Bấm chọn vào ô "Merge pull request" để tiến hành gộp.
 ```
 ![GitHub](img/merge3.png)
 
 ```text
-4. Khuyến khích nhấn vào mũi tên xổ xuống cạnh nút "Merge pull request" và chọn "Rebase and merge" để giữ lịch sử commit gọn gàng, sau đó nhấn nút xác nhận để hoàn tất quá trình đưa code vào nhánh main.
+4. Khuyến khích nhấn vào mũi tên xổ xuống cạnh nút 
+"Merge pull request" và chọn "Rebase and merge" để giữ 
+lịch sử commit gọn gàng, sau đó nhấn nút xác nhận để 
+hoàn tất quá trình đưa code vào nhánh main.
 ```
 ![GitHub](img/merge4.png)
