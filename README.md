@@ -1,5 +1,6 @@
 ## A/ Setup to play
-1) Chạy lệnh sau để tạo file thực thi
+1) Chạy lệnh sau để tạo file thực thi  
+(nên tạo file lại nếu dùng Linux/MacOS cho tương thích với hệ điều hành hiện tại)  
 
 ```
 make
