@@ -28,6 +28,7 @@ Contributors:
 - Ngô Triều Vĩ (25730160)
 
 Contribution:
-  -  Refactor the original codebase into OPP for snake and labyrinth.
-  -  Upgrade more barriers with multi gameplay mode.
-  -  Conceptualize the labyrinth
+  - Refactor the original codebase into OPP for snake and labyrinth.
+  - Upgrade more barriers with multi gameplay mode.
+  - Conceptualize the labyrinth and score system.
+  - Support both Linux, MacOS and Windows platforms.
