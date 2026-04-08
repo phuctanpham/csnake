@@ -2,7 +2,6 @@
 #include <iostream>
 #include <ctime>
 #include "snake.h"
-#include <fstream>
 #include <thread>
 #include <chrono>
 #ifdef _WIN32
@@ -264,24 +263,6 @@ void Snake::move(Direction direction) {
     }
 }
 
-int loadHighScore() {
-    ifstream file("highscore.txt");
-    int hs = 0;
-    if (file.is_open()) {
-        file >> hs;
-        file.close();
-    }
-    return hs;
-}
-
-void saveHighScore(int hs) {
-    ofstream file("highscore.txt");
-    if (file.is_open()) {
-        file << hs;
-        file.close();
-    }
-}
-
 bool isOppositeDirection(Direction dir1, Direction dir2) {
     return (dir1 + 2) % 4 == dir2;
 }
@@ -291,8 +272,7 @@ Game::Game(Labyrinth* labyrinth) : labyrinth(labyrinth), currentDirection(RIGHT)
     food.y = 0;
     srand(static_cast<unsigned int>(time(NULL)));
     spawnFood();
-    score = 0;
-    highScore = loadHighScore();
+    scoreState.load();
 }
 
 void Game::run() {
@@ -383,7 +363,7 @@ void Game::drawScene() const {
     labyrinth->draw();
     // hiển thị điểm số và điểm cao nhất
      goToXY(1, 1);
-    cout << "Score: " << score << " | High Score: " << highScore;
+    cout << "Score: " << scoreState.current() << " | High Score: " << scoreState.best();
     // vẽ mồi và rắn
     goToXY(food.x, food.y);
     cout << "*";
@@ -408,20 +388,17 @@ void Game::update() {
     if (snakeHead.x == food.x && snakeHead.y == food.y) {
         snake.grow();
         spawnFood();
-        score += 10;
-        if (score > highScore) {
-            highScore = score;
-        }
+        scoreState.addPoints(10);
     }
 }
 
 void Game::drawGameOver() const {
-    saveHighScore(highScore);
+    scoreState.save();
     goToXY(labyrinth->left(), labyrinth->bottom() + 2);
     cout << "Game Over. Press Ctrl+C to exit." << endl;
-    cout << "Final Score: " << score << endl;
-    cout << "High Score: " << highScore << endl;
-    if (score == highScore && score > 0) {  // Kiểm tra nếu là kỷ lục mới
+    cout << "Final Score: " << scoreState.current() << endl;
+    cout << "High Score: " << scoreState.best() << endl;
+    if (scoreState.isNewRecord()) {  // Kiểm tra nếu là kỷ lục mới
         cout << "New High Score!" << endl;
     }
 }
