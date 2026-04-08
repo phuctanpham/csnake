@@ -264,27 +264,29 @@ void Game::run() {
 }
 
 void Game::handleInput() {
-    if (!keyAvailable()) {
-        return;
-    }
-
-    char key = readKey();
-    if (key == 27) {
-        Direction direction = currentDirection;
-        if (tryReadArrowDirection(direction)) {
-            if (!isOppositeDirection(currentDirection, direction)) {
-                currentDirection = direction;
+    Direction newDirection = currentDirection;
+    
+    // Đọc hết tất cả key có sẵn trong buffer
+    while (keyAvailable()) {
+        char key = readKey();
+        if (key == 27) {
+            Direction direction = currentDirection;
+            if (tryReadArrowDirection(direction)) {
+                if (!isOppositeDirection(currentDirection, direction)) {
+                    newDirection = direction;
+                }
+            }
+        } else {
+            Direction direction = currentDirection;
+            if (decodeDirectionKey(key, direction)) {
+                if (!isOppositeDirection(currentDirection, direction)) {
+                    newDirection = direction;
+                }
             }
         }
-        return;
     }
-
-    Direction direction = currentDirection;
-    if (decodeDirectionKey(key, direction)) {
-        if (!isOppositeDirection(currentDirection, direction)) {
-            currentDirection = direction;
-        }
-    }
+    
+    currentDirection = newDirection;
 }
 
 void Game::drawScene() const {
