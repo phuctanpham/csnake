@@ -32,6 +32,27 @@ const BarrierSegment HELL_BARRIERS[] = {
 const int HELL_BARRIERS_COUNT = sizeof(HELL_BARRIERS) / sizeof(HELL_BARRIERS[0]);
 }
 
+Difficulty chooseLabyrinthDifficulty() {
+    int choice = 0;
+
+    cout << "Choose mode:\n";
+    cout << "1. Easy\n";
+    cout << "2. Hard\n";
+    cout << "3. Hell\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 2) {
+        return DifficultyHard;
+    }
+
+    if (choice == 3) {
+        return DifficultyHell;
+    }
+
+    return DifficultyEasy;
+}
+
 Labyrinth::Labyrinth(Difficulty selectedDifficulty)
     : difficulty(selectedDifficulty), minX(2), minY(2), maxX(35), maxY(20) {
     if (difficulty == DifficultyHard) {

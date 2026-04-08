@@ -1,6 +1,7 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 #include "labyrinth.h"
+#include "score.h"
 
 
 enum Direction {
@@ -35,8 +36,7 @@ private:
     Direction currentDirection;
     Point food;
     bool gameOver;
-    int score;
-    int highScore;
+    ScoreState scoreState;
 
 public:
     explicit Game(Labyrinth* labyrinth);

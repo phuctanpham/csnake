@@ -1,7 +1,7 @@
 CXX ?= clang++
 CXXFLAGS ?= -std=c++17 -Wall -Wextra -pedantic
 
-SRC = main.cpp snake.cpp labyrinth.cpp
+SRC = main.cpp snake.cpp labyrinth.cpp score.cpp
 TARGET = snake
 TARGET_EXE = snake.exe
 

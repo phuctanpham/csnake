@@ -14,6 +14,8 @@ enum Difficulty {
     DifficultyHell = 3
 };
 
+Difficulty chooseLabyrinthDifficulty();
+
 class Labyrinth {
 private:
     Difficulty difficulty;
