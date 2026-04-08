@@ -1,15 +1,29 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
+#include "snake.h"
+#include <fstream>
+#include <thread>
+#include <chrono>
+#ifdef _WIN32
+#include <conio.h>
+#include <windows.h>
+#else
 #include <termios.h>
 #include <unistd.h>
 #include <sys/select.h>
-#include "snake.h"
-#include <fstream>
+#endif
 
 using namespace std;
 
 namespace {
+#ifdef _WIN32
+class TerminalModeGuard {
+public:
+    TerminalModeGuard() {}
+    ~TerminalModeGuard() {}
+};
+#else
 class TerminalModeGuard {
 private:
     termios originalTermios;
@@ -37,7 +51,40 @@ public:
         }
     }
 };
+#endif
 
+#ifdef _WIN32
+bool keyAvailable() {
+    return _kbhit() != 0;
+}
+
+int readKey() {
+    return _getch();
+}
+
+
+void clearScreen() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hConsole == INVALID_HANDLE_VALUE) {
+        system("cls");
+        return;
+    }
+
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
+        system("cls");
+        return;
+    }
+
+    DWORD cellCount = csbi.dwSize.X * csbi.dwSize.Y;
+    DWORD count;
+    COORD homeCoords = {0, 0};
+
+    FillConsoleOutputCharacter(hConsole, ' ', cellCount, homeCoords, &count);
+    FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellCount, homeCoords, &count);
+    SetConsoleCursorPosition(hConsole, homeCoords);
+}
+#else
 bool keyAvailable() {
     timeval timeout;
     timeout.tv_sec = 0;
@@ -50,34 +97,13 @@ bool keyAvailable() {
     return select(STDIN_FILENO + 1, &readSet, NULL, NULL, &timeout) > 0;
 }
 
-char readKey() {
+int readKey() {
     char key;
     ssize_t bytesRead = read(STDIN_FILENO, &key, 1);
     if (bytesRead == 1) {
-        return key;
+        return static_cast<unsigned char>(key);
     }
-    return '\0';
-}
-
-bool decodeDirectionKey(char key, Direction& direction) {
-    if (key == 'a') {
-        direction = LEFT;
-        return true;
-    }
-    if (key == 'w') {
-        direction = UP;
-        return true;
-    }
-    if (key == 'd') {
-        direction = RIGHT;
-        return true;
-    }
-    if (key == 'x') {
-        direction = DOWN;
-        return true;
-    }
-
-    return false;
+    return -1;
 }
 
 bool tryReadArrowDirection(Direction& direction) {
@@ -118,6 +144,29 @@ bool tryReadArrowDirection(Direction& direction) {
 void clearScreen() {
     cout << "\033[2J\033[H";
 }
+#endif
+
+bool decodeDirectionKey(int key, Direction& direction) {
+    if (key == 'a' || key == 'A') {
+        direction = LEFT;
+        return true;
+    }
+    if (key == 'w' || key == 'W') {
+        direction = UP;
+        return true;
+    }
+    if (key == 'd' || key == 'D') {
+        direction = RIGHT;
+        return true;
+    }
+    if (key == 'x' || key == 'X') {
+        direction = DOWN;
+        return true;
+    }
+
+    return false;
+}
+
 }
 
 Snake::Snake() : length(3) {
@@ -255,7 +304,7 @@ void Game::run() {
         clearScreen();
         drawScene();
         cout.flush();
-        usleep(300000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
     }
 
     clearScreen();
@@ -265,11 +314,51 @@ void Game::run() {
 
 void Game::handleInput() {
     Direction newDirection = currentDirection;
-    
+
     // Đọc hết tất cả key có sẵn trong buffer
     while (keyAvailable()) {
-        char key = readKey();
-        if (key == 27) {
+        int key = readKey();
+#ifdef _WIN32
+        if (key == 224) {  // Phím mũi tên trên Windows bắt đầu bằng 224
+            int arrowCode = readKey();  // Đọc byte thứ hai
+            Direction direction = currentDirection;
+            if (arrowCode == 72) {
+                direction = UP;
+            } else if (arrowCode == 80) {
+                direction = DOWN;
+            } else if (arrowCode == 77) {
+                direction = RIGHT;
+            } else if (arrowCode == 75) {
+                direction = LEFT;
+            }
+            if (!isOppositeDirection(currentDirection, direction)) {
+                newDirection = direction;
+            }
+        } else if (key == 0) {  // Một số trường hợp Windows dùng 0
+            int arrowCode = readKey();
+            Direction direction = currentDirection;
+            if (arrowCode == 72) {
+                direction = UP;
+            } else if (arrowCode == 80) {
+                direction = DOWN;
+            } else if (arrowCode == 77) {
+                direction = RIGHT;
+            } else if (arrowCode == 75) {
+                direction = LEFT;
+            }
+            if (!isOppositeDirection(currentDirection, direction)) {
+                newDirection = direction;
+            }
+        } else {
+            Direction direction = currentDirection;
+            if (decodeDirectionKey(key, direction)) {
+                if (!isOppositeDirection(currentDirection, direction)) {
+                    newDirection = direction;
+                }
+            }
+        }
+#else
+        if (key == 27) {  // ESC trên Linux
             Direction direction = currentDirection;
             if (tryReadArrowDirection(direction)) {
                 if (!isOppositeDirection(currentDirection, direction)) {
@@ -284,8 +373,9 @@ void Game::handleInput() {
                 }
             }
         }
+#endif
     }
-    
+
     currentDirection = newDirection;
 }
 
@@ -336,6 +426,18 @@ void Game::drawGameOver() const {
     }
 }
 
+#ifdef _WIN32
+void goToXY(int column, int line) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hConsole != INVALID_HANDLE_VALUE) {
+        COORD coord;
+        coord.X = static_cast<SHORT>(column);
+        coord.Y = static_cast<SHORT>(line);
+        SetConsoleCursorPosition(hConsole, coord);
+    }
+}
+#else
 void goToXY(int column, int line) {
     cout << "\033[" << (line + 1) << ";" << (column + 1) << "H";
 }
+#endif
