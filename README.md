@@ -47,3 +47,9 @@ Contribution:
   - Upgrade more barriers with multi gameplay mode.
   - Conceptualize the labyrinth and score system.
   - Support both Linux, MacOS and Windows platforms.
+
+Danh sách các thay đổi theo góp ý:
+- Đổi profile name thành cấu trúc MSSV - Họ Tên
+- Đã đổi thành line driven edit thay vì file driven edit
+
+Chân thành cảm ơn sự đóng góp của mọi người !
