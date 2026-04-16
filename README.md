@@ -48,7 +48,9 @@ Contribution:
   - Conceptualize the labyrinth and score system.
   - Support both Linux, MacOS and Windows platforms.
   - Add difficult leveling system by speed and barriers based on score
-Danh sách các thay đổi theo góp ý:
+
+Danh sách các thay đổi theo góp ý:  
+
 - Đổi profile name thành cấu trúc MSSV - Họ Tên
 - Đã đổi thành line driven edit thay vì file driven edit
 - Theo góp ý của thầy, đưa từ chién lược đơn dòng phát triển theo kỹ thuật rebasing merging thành đa dòng phát triển theo kỹ thuật squashing merging.  
