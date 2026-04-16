@@ -27,10 +27,10 @@ private:
 public:
     explicit Labyrinth(Difficulty difficulty);
 
-    void draw() const;
+    void draw(int score) const;
     bool isInside(int x, int y) const;
-    bool isBarrier(int x, int y) const;
-    Point randomEmptyCell(const Snake& snake) const;
+    bool isBarrier(int x, int y, int score) const;
+    Point randomEmptyCell(const Snake& snake, int score) const;
 
     int left() const;
     int top() const;

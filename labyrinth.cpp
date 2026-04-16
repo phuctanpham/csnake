@@ -64,10 +64,39 @@ Labyrinth::Labyrinth(Difficulty selectedDifficulty)
     }
 }
 
-void Labyrinth::draw() const {
+bool Labyrinth::isInside(int x, int y) const {
+    return x > minX && x < maxX && y > minY && y < maxY;
+}
+
+namespace {
+int activeBarriersByScore(Difficulty difficulty, int score, int maxCount) {
+    if (difficulty == DifficultyEasy) {
+        return 0;
+    }
+
+    const int scoreStep = 10;
+    const int growth = score / scoreStep;
+
+    int baseCount = 0;
+    if (difficulty == DifficultyHard) {
+        baseCount = 4;
+    } else {
+        baseCount = 10;
+    }
+
+    int activeCount = baseCount + growth;
+    if (activeCount > maxCount) {
+        activeCount = maxCount;
+    }
+
+    return activeCount;
+}
+}
+
+void Labyrinth::draw(int score) const {
     for (int x = minX; x <= maxX; ++x) {
         for (int y = minY; y <= maxY; ++y) {
-            if (x == minX || x == maxX || y == minY || y == maxY || isBarrier(x, y)) {
+            if (x == minX || x == maxX || y == minY || y == maxY || isBarrier(x, y, score)) {
                 goToXY(x, y);
                 cout << "+";
             }
@@ -75,17 +104,14 @@ void Labyrinth::draw() const {
     }
 }
 
-bool Labyrinth::isInside(int x, int y) const {
-    return x > minX && x < maxX && y > minY && y < maxY;
-}
-
-bool Labyrinth::isBarrier(int x, int y) const {
+bool Labyrinth::isBarrier(int x, int y, int score) const {
     if (difficulty == DifficultyEasy) {
         return false;
     }
 
     if (difficulty == DifficultyHard) {
-        for (int i = 0; i < HARD_BARRIERS_COUNT; ++i) {
+        int activeCount = activeBarriersByScore(difficulty, score, HARD_BARRIERS_COUNT);
+        for (int i = 0; i < activeCount; ++i) {
             if (HARD_BARRIERS[i].x == x && HARD_BARRIERS[i].y == y) {
                 return true;
             }
@@ -93,7 +119,8 @@ bool Labyrinth::isBarrier(int x, int y) const {
         return false;
     }
 
-    for (int i = 0; i < HELL_BARRIERS_COUNT; ++i) {
+    int activeCount = activeBarriersByScore(difficulty, score, HELL_BARRIERS_COUNT);
+    for (int i = 0; i < activeCount; ++i) {
         if (HELL_BARRIERS[i].x == x && HELL_BARRIERS[i].y == y) {
             return true;
         }
@@ -102,12 +129,12 @@ bool Labyrinth::isBarrier(int x, int y) const {
     return false;
 }
 
-Point Labyrinth::randomEmptyCell(const Snake& snake) const {
+Point Labyrinth::randomEmptyCell(const Snake& snake, int score) const {
     Point cell;
     do {
         cell.x = rand() % (maxX - minX - 1) + minX + 1;
         cell.y = rand() % (maxY - minY - 1) + minY + 1;
-    } while (isBarrier(cell.x, cell.y) || snake.occupies(cell.x, cell.y));
+    } while (isBarrier(cell.x, cell.y, score) || snake.occupies(cell.x, cell.y));
 
     return cell;
 }
