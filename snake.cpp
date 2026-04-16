@@ -361,7 +361,7 @@ void Game::handleInput() {
 }
 
 void Game::drawScene() const {
-    labyrinth->draw();
+    labyrinth->draw(scoreState.current());
     // hiển thị điểm số và điểm cao nhất
      goToXY(1, 1);
     cout << "Score: " << scoreState.current() << " | High Score: " << scoreState.best();
@@ -372,13 +372,13 @@ void Game::drawScene() const {
 }
 
 void Game::spawnFood() {
-    food = labyrinth->randomEmptyCell(snake);
+    food = labyrinth->randomEmptyCell(snake, scoreState.current());
 }
 
 void Game::update() {
     Point nextHead = snake.nextHead(currentDirection);
 
-    if (!labyrinth->isInside(nextHead.x, nextHead.y) || labyrinth->isBarrier(nextHead.x, nextHead.y) || snake.hitsBodyExceptTail(nextHead.x, nextHead.y)) {
+    if (!labyrinth->isInside(nextHead.x, nextHead.y) || labyrinth->isBarrier(nextHead.x, nextHead.y, scoreState.current()) || snake.hitsBodyExceptTail(nextHead.x, nextHead.y)) {
         gameOver = true;
         return;
     }
