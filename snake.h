@@ -37,6 +37,7 @@ private:
     Point food;
     bool gameOver;
     ScoreState scoreState;
+    int tickDelayMs;
 
 public:
     explicit Game(Labyrinth* labyrinth);
@@ -48,6 +49,7 @@ private:
     void spawnFood();
     void update();
     void drawGameOver() const;
+    void refreshSpeedByScore();
 };
 
 void goToXY(int column, int line);

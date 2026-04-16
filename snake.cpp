@@ -267,12 +267,13 @@ bool isOppositeDirection(Direction dir1, Direction dir2) {
     return (dir1 + 2) % 4 == dir2;
 }
 
-Game::Game(Labyrinth* labyrinth) : labyrinth(labyrinth), currentDirection(RIGHT), gameOver(false) {
+Game::Game(Labyrinth* labyrinth) : labyrinth(labyrinth), currentDirection(RIGHT), gameOver(false), tickDelayMs(300) {
     food.x = 0;
     food.y = 0;
     srand(static_cast<unsigned int>(time(NULL)));
     spawnFood();
     scoreState.load();
+    refreshSpeedByScore();
 }
 
 void Game::run() {
@@ -284,7 +285,7 @@ void Game::run() {
         clearScreen();
         drawScene();
         cout.flush();
-        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+        std::this_thread::sleep_for(std::chrono::milliseconds(tickDelayMs));
     }
 
     clearScreen();
@@ -389,7 +390,24 @@ void Game::update() {
         snake.grow();
         spawnFood();
         scoreState.addPoints(10);
+        refreshSpeedByScore();
     }
+}
+
+void Game::refreshSpeedByScore() {
+    const int baseDelayMs = 300;
+    const int minDelayMs = 90;
+    const int scoreStep = 10;
+    const int speedUpPerStepMs = 8;
+
+    int gainedSteps = scoreState.current() / scoreStep;
+    int reducedDelay = baseDelayMs - gainedSteps * speedUpPerStepMs;
+
+    if (reducedDelay < minDelayMs) {
+        reducedDelay = minDelayMs;
+    }
+
+    tickDelayMs = reducedDelay;
 }
 
 void Game::drawGameOver() const {
