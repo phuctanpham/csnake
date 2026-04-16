@@ -52,10 +52,10 @@ Danh sách các thay đổi theo góp ý:
 - Đổi profile name thành cấu trúc MSSV - Họ Tên
 - Đã đổi thành line driven edit thay vì file driven edit
 - Theo góp ý của thầy, Đưa từ chién lược đơn dòng phát triển theo kỹ thuật rebasing merging thành đa dòng phát triển theo kỹ thuật squashing merging.  
-  + Trước khi thầy góp ý:
-  <img width="151" height="47" alt="networkGrapthA" src="https://github.com/user-attachments/assets/9d49b627-4719-4657-b370-f9467db2dd81" />
-  + Sau khi thầy góp ý:
-  <img width="149" height="77" alt="networkGrapthB" src="https://github.com/user-attachments/assets/004c369a-ed95-47e9-aa94-8d345188fa92" />
+  + Trước khi thầy góp ý:  
+  <img width="151" height="47" alt="networkGrapthA" src="https://github.com/user-attachments/assets/9d49b627-4719-4657-b370-f9467db2dd81" />  
+  + Sau khi thầy góp ý:  
+  <img width="149" height="77" alt="networkGrapthB" src="https://github.com/user-attachments/assets/004c369a-ed95-47e9-aa94-8d345188fa92" />  
 
 
 Chân thành cảm ơn sự đóng góp của thầy và mọi người !
