@@ -42,12 +42,12 @@ Contributors:
 - Tạ Minh Trường (25730157)
 - Ngô Triều Vĩ (25730160)
 
-Contribution:
-  - Refactor the original codebase into OPP for snake and labyrinth.
-  - Upgrade more barriers with multi gameplay mode.
-  - Conceptualize the labyrinth and score system.
-  - Support both Linux, MacOS and Windows platforms.
-  - Add difficult leveling system by speed and barriers based on score
+So với bản gốc, các thay đổi cải thiện mới là:
+  - Sửa lại mã nguồn gốc nhằm tách quản lý thực thể theo file để dùng kỹ thuật lập trình theo hướng thủ tục (Orirented Procedure Programming) riêng từng thực thể. 
+  - Bổ sung nhiều cơ chế độ khó với ý tưởng rào cản/cạm bãy.
+  - Khái niệm hoá thực thể mê cung và hệ thống điểm số.
+  - Hỗ trợ chạy trên đa nền tảng: Windown, MacOS và Linux
+  - Tăng các cấp bặc độ khó khi điểm điểm số càng cao thì tốc độ và số lượng rào cản/cạm bãy tăng theo.
 
 Danh sách các thay đổi theo góp ý:  
 
