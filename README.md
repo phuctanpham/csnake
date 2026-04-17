@@ -42,17 +42,17 @@ Contributors:
 - Tạ Minh Trường (25730157)
 - Ngô Triều Vĩ (25730160)
 
-So với bản gốc, các thay đổi cải thiện mới là:
-  - Sửa lại mã nguồn gốc nhằm tách quản lý thực thể theo file để dùng kỹ thuật lập trình theo hướng thủ tục (oriented procedure programming) riêng từng thực thể. 
-  - Bổ sung nhiều cơ chế độ khó với ý tưởng rào cản/cạm bãy.
+So với bản gốc, các thay đổi cải thiện mới là:. 
+  - Bổ sung nhiều cơ chế độ khó với ý tưởng rào cản/cạm bẫy.
   - Khái niệm hoá thực thể mê cung và hệ thống điểm số.
   - Hỗ trợ chạy trên đa nền tảng: Windown, MacOS và Linux
-  - Tăng các cấp bậc độ khó khi điểm số càng cao thì tốc độ và số lượng rào cản/cạm bãy tăng theo.
+  - Tăng các cấp bậc độ khó khi điểm số càng cao thì tốc độ và số lượng rào cản/cạm bẫy tăng theo.
 
 Danh sách các thay đổi theo góp ý:  
-
+Góp ý lần 1:
 - Đổi profile name thành cấu trúc MSSV - Họ Tên
-- Đã đổi thành line driven edit thay vì file driven edit
+- Đã đổi thành line driven edit thay vì file driven edit, chuyển từ hướng thủ tục qua hướng đối tượng.
+Góp ý lần 2:
 - Theo góp ý của thầy, đưa từ chiến lược đơn dòng phát triển theo kỹ thuật rebasing merging thành đa dòng phát triển theo kỹ thuật squashing merging.  
   + Trước khi thầy góp ý:
     
