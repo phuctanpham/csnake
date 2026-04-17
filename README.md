@@ -43,7 +43,7 @@ Contributors:
 - Ngô Triều Vĩ (25730160)
 
 So với bản gốc, các thay đổi cải thiện mới là:
-  - Sửa lại mã nguồn gốc nhằm tách quản lý thực thể theo file để dùng kỹ thuật lập trình theo hướng thủ tục (Orirented Procedure Programming) riêng từng thực thể. 
+  - Sửa lại mã nguồn gốc nhằm tách quản lý thực thể theo file để dùng kỹ thuật lập trình theo hướng thủ tục (oriented procedure programming) riêng từng thực thể. 
   - Bổ sung nhiều cơ chế độ khó với ý tưởng rào cản/cạm bãy.
   - Khái niệm hoá thực thể mê cung và hệ thống điểm số.
   - Hỗ trợ chạy trên đa nền tảng: Windown, MacOS và Linux
