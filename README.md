@@ -52,7 +52,8 @@ Danh sách các thay đổi theo góp ý:
 Góp ý lần 1:
 - Đổi profile name thành cấu trúc MSSV - Họ Tên
 - Đã đổi thành line driven edit thay vì file driven edit, chuyển từ hướng thủ tục qua hướng đối tượng.
-Góp ý lần 2:
+
+Góp ý lần 2:  
 - Theo góp ý của thầy, đưa từ chiến lược đơn dòng phát triển theo kỹ thuật rebasing merging thành đa dòng phát triển theo kỹ thuật squashing merging.  
   + Trước khi thầy góp ý:
     
