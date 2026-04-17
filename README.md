@@ -47,13 +47,13 @@ So với bản gốc, các thay đổi cải thiện mới là:
   - Bổ sung nhiều cơ chế độ khó với ý tưởng rào cản/cạm bãy.
   - Khái niệm hoá thực thể mê cung và hệ thống điểm số.
   - Hỗ trợ chạy trên đa nền tảng: Windown, MacOS và Linux
-  - Tăng các cấp bặc độ khó khi điểm điểm số càng cao thì tốc độ và số lượng rào cản/cạm bãy tăng theo.
+  - Tăng các cấp bậc độ khó khi điểm số càng cao thì tốc độ và số lượng rào cản/cạm bãy tăng theo.
 
 Danh sách các thay đổi theo góp ý:  
 
 - Đổi profile name thành cấu trúc MSSV - Họ Tên
 - Đã đổi thành line driven edit thay vì file driven edit
-- Theo góp ý của thầy, đưa từ chién lược đơn dòng phát triển theo kỹ thuật rebasing merging thành đa dòng phát triển theo kỹ thuật squashing merging.  
+- Theo góp ý của thầy, đưa từ chiến lược đơn dòng phát triển theo kỹ thuật rebasing merging thành đa dòng phát triển theo kỹ thuật squashing merging.  
   + Trước khi thầy góp ý:
     
   <img width="151" height="47" alt="networkGrapthA" src="https://github.com/user-attachments/assets/9d49b627-4719-4657-b370-f9467db2dd81" />
